@@ -11,12 +11,21 @@ class Counter extends Component {
     fontWeight: "bold"
   };
 
+  handleIncrement() {
+    console.log("Increment Clicked");
+  }
+
   render() {
     //React.Fragment gets rid of unnecessary outside div
     return (
       <React.Fragment>
         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
-        <button className="btn btn-secondary btn-sm">Increment</button>
+        <button
+          onClick={this.handleIncrement}
+          className="btn btn-secondary btn-sm"
+        >
+          Increment
+        </button>
         {this.renderTags()}
       </React.Fragment>
     );
