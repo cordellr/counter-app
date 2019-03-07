@@ -11,9 +11,10 @@ class Counter extends Component {
     fontWeight: "bold"
   };
 
-  handleIncrement() {
-    console.log("Increment Clicked");
-  }
+  //changed to arrow function to inhereit 'this' keyword
+  handleIncrement = () => {
+    this.setState({ count: this.state.count + 1 });
+  };
 
   render() {
     //React.Fragment gets rid of unnecessary outside div
