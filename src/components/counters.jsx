@@ -11,6 +11,20 @@ class Counters extends Component {
     ]
   };
 
+  //this handleIncrement method helps maintain single source of truth principle
+  handleIncrement = counter => {
+    //spread operator clones state.counters array
+    const counters = [...this.state.counters];
+    //finds index of counter object passed
+    const index = counters.indexOf(counter);
+    //spread operator clones indexed object
+    counters[index] = { ...counter };
+    //increases value of cloned object
+    counters[index].value++;
+    //sets state of new counters array
+    this.setState({ counters });
+  };
+
   //handler for delete event called from counter.jsx click event
   //passes id of counter to be deleted
   //creates a new arrary, does not directly update state
@@ -28,6 +42,7 @@ class Counters extends Component {
           <Counter
             key={counter.id}
             onDelete={this.handleDelete}
+            onIncrement={this.handleIncrement}
             counter={counter}
           />
         ))}

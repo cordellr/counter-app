@@ -1,20 +1,9 @@
 import React, { Component } from "react";
 
 class Counter extends Component {
-  state = {
-    // this.props.value is passed values initialized in counters.jsx
-    value: this.props.counter.value
-    //tags: ["tag1", "tag2", "tag3"]
-  };
-
   styles = {
     fontSize: 18,
     fontWeight: "bold"
-  };
-
-  //changed to arrow function to inhereit 'this' keyword
-  handleIncrement = () => {
-    this.setState({ value: this.state.value + 1 });
   };
 
   render() {
@@ -22,7 +11,7 @@ class Counter extends Component {
       <div>
         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
         <button
-          onClick={this.handleIncrement}
+          onClick={() => this.props.onIncrement(this.props.counter)}
           className="btn btn-secondary btn-sm"
         >
           Increment
@@ -53,12 +42,14 @@ class Counter extends Component {
 
   getBadgeClasses() {
     let classes = "badge m-2 badge-";
-    this.state.value === 0 ? (classes += "warning") : (classes += "primary");
+    this.props.counter.value === 0
+      ? (classes += "warning")
+      : (classes += "primary");
     return classes;
   }
 
   formatCount() {
-    const { value } = this.state;
+    const { value } = this.props.counter;
     return value === 0 ? "Zero" : value;
   }
 }
