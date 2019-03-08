@@ -11,6 +11,14 @@ class Counters extends Component {
     ]
   };
 
+  handleReset = () => {
+    const counters = this.state.counters.map(c => {
+      c.value = 0;
+      return c;
+    });
+    this.setState({ counters });
+  };
+
   //this handleIncrement method helps maintain single source of truth principle
   handleIncrement = counter => {
     //spread operator clones state.counters array
@@ -38,6 +46,12 @@ class Counters extends Component {
     //values from counters state are passed to counter component
     return (
       <div>
+        <button
+          onClick={this.handleReset}
+          className="btn btn-primary btn-sm m-2"
+        >
+          Reset
+        </button>
         {this.state.counters.map(counter => (
           <Counter
             key={counter.id}
