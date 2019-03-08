@@ -11,6 +11,7 @@ class Counters extends Component {
     ]
   };
 
+  //passes each counter object, sets value to zero, sets state
   handleReset = () => {
     const counters = this.state.counters.map(c => {
       c.value = 0;
