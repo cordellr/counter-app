@@ -36,6 +36,19 @@ class App extends Component {
     this.setState({ counters });
   };
 
+  handleSubtract = counter => {
+    //spread operator clones state.counters array
+    const counters = [...this.state.counters];
+    //finds index of counter object passed
+    const index = counters.indexOf(counter);
+    //spread operator clones indexed object
+    counters[index] = { ...counter };
+    //increases value of cloned object
+    counters[index].value--;
+    //sets state of new counters array
+    this.setState({ counters });
+  };
+
   //handler for delete event called from counter.jsx click event
   //passes id of counter to be deleted
   //creates a new arrary, does not directly update state
@@ -56,6 +69,7 @@ class App extends Component {
             counters={this.state.counters}
             onReset={this.handleReset}
             onIncrement={this.handleIncrement}
+            onSubtract={this.handleSubtract}
             onDelete={this.handleDelete}
           />
         </main>
